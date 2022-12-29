@@ -1,8 +1,16 @@
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
   mode: 'development',
-  entry: './src/index.ts',
+  entry: {
+    index: './src/index.ts',
+  },
+  output: {
+    filename: 'static/[name].bundle.js',
+    path: path.resolve(__dirname, './dist'),
+    publicPath: '/',
+  },
   devtool: 'inline-source-map',
   module: {
     // 밑에서부터 동작
@@ -27,8 +35,12 @@ module.exports = {
   resolve: {
     extensions: ['.tsx', '.ts', '.js'],
   },
-  output: {
-    filename: 'main.js',
-    path: path.resolve(__dirname, 'dist'),
-  },
+
+  plugins: [
+    new HtmlWebpackPlugin({
+      title: 'index',
+      filename: 'index.html',
+      template: './src/public/index.html',
+    }),
+  ],
 };

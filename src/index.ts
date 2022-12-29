@@ -1,20 +1,35 @@
-interface test {
-  a: string;
+interface Route {
+  path: string;
+  view: () => void;
 }
 
-const component = () => {
-  const element = document.createElement('div');
+const router = async () => {
+  const routes: Route[] = [
+    { path: '/', view: () => console.log('Main') },
+    { path: '/posts', view: () => console.log('Posts') },
+    { path: '/settings', view: () => console.log('Settings') },
+  ];
 
-  element.innerHTML = `hello`;
+  const isMatches = routes.map((route) => {
+    return {
+      route: route,
+      isMatch: location.pathname === route.path,
+    };
+  });
 
-  const arr = [1, 2, 3, 4, 5];
-  try {
-    arr.forEach((n) => console.log(n));
-  } catch (e) {
-    console.log(e);
-  }
+  let isMatch = isMatches.find((route) => route.isMatch);
 
-  return element;
+  console.log(isMatch, isMatches);
 };
 
-document.body.appendChild(component());
+document.addEventListener('DOMContentLoaded', () => router());
+
+// const component = () => {
+//   const element = document.createElement('div');
+
+//   element.innerHTML = `hello`;
+
+//   return element;
+// };
+
+// document.body.appendChild(component());
