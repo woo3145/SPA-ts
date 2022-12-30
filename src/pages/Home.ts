@@ -1,16 +1,7 @@
-export interface Component {
-  setTitle(title: string): void;
-  getHtml(): Promise<string>;
-}
+import { Component } from '../core/Component';
 
-export class Home implements Component {
-  setTitle(title: string) {
-    document.title = title;
-  }
-
-  async getHtml(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      resolve(`<h1>Home</h1>`);
-    });
+export class Home extends Component {
+  template(): string {
+    return `<h1> Home </h1>`;
   }
 }

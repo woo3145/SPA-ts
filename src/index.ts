@@ -1,10 +1,10 @@
-import { Component, Home } from './pages/Home';
+import { Home } from './pages/Home';
 import { Posts } from './pages/Posts';
 import { Settings } from './pages/Settings';
 
 interface Route {
   path: string;
-  view: Component;
+  view: any;
 }
 
 const navigateTo = (url: string) => {
@@ -14,9 +14,9 @@ const navigateTo = (url: string) => {
 
 const router = async () => {
   const routes: Route[] = [
-    { path: '/', view: new Home() },
-    { path: '/posts', view: new Posts() },
-    { path: '/settings', view: new Settings() },
+    { path: '/', view: Home },
+    { path: '/posts', view: Posts },
+    { path: '/settings', view: Settings },
   ];
 
   const isMatches = routes.map((route) => {
@@ -34,11 +34,12 @@ const router = async () => {
       isMatch: true,
     };
   }
-  const view: Component = match.route.view;
 
   const app = document.querySelector('#app');
+
   if (app) {
-    app.innerHTML = await view.getHtml();
+    const view = new match.route.view(app);
+    console.log(view);
   }
 };
 

@@ -1,13 +1,7 @@
-import { Component } from './Home';
+import { Component } from '../core/Component';
 
-export class Settings implements Component {
-  setTitle(title: string) {
-    document.title = title;
-  }
-
-  async getHtml(): Promise<string> {
-    return new Promise((resolve, reject) => {
-      resolve(`<h1>Settings</h1>`);
-    });
+export class Settings extends Component {
+  template(): string {
+    return `<h1> Settings </h1>`;
   }
 }
