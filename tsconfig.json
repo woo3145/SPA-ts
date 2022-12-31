@@ -7,9 +7,12 @@
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
-    "baseUrl": ".",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,
-    "strict": true
+    "strict": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"]
+    }
   }
 }
