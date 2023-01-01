@@ -28,4 +28,20 @@ export class Component {
     this.$state = { ...this.$state, ...newState };
     this.render();
   }
+
+  addEvent(eventType: keyof ElementEventMap, selector: string, callback: any) {
+    const children: NodeListOf<Element> =
+      this.$target.querySelectorAll(selector);
+    const childrenArr = Array.from(children);
+
+    const isTarget = (target: Element) =>
+      childrenArr.includes(target) || target.closest(selector);
+
+    this.$target.addEventListener(eventType, (e: Event) => {
+      if (e.target instanceof Element) {
+        if (!e.target || !isTarget(e.target)) return false;
+        callback(e);
+      }
+    });
+  }
 }
