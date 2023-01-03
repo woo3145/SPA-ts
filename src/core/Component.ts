@@ -1,13 +1,17 @@
-export class Component {
+interface Object {
+  [key: string]: any;
+}
+
+export class Component<Props = any, State = any> {
   $target: Element;
-  $props: object; // 부모자식간 값 전달
-  $state: object; // 컴포넌트 상태 값
+  $props: Props; // 부모자식간 값 전달
+  $state: State; // 컴포넌트 상태 값
 
   // 생명주기 setup() -> setEvent() -> render()
-  constructor($target: Element, props?: object) {
+  constructor($target: Element, props?: Props) {
     this.$target = $target;
-    this.$props = { ...props };
-    this.$state = {};
+    this.$props = props as Props;
+    this.$state = {} as State;
     this.setup();
     this.setEvent();
     this.render();

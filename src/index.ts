@@ -1,10 +1,12 @@
+import { Layout } from './components/Layout';
+import { Component } from './core/Component';
 import { Home } from './pages/Home';
 import { Posts } from './pages/Posts';
 import { Settings } from './pages/Settings';
 
 interface Route {
   path: string;
-  view: any;
+  view: Class;
 }
 
 const navigateTo = (url: string) => {
@@ -38,7 +40,8 @@ const router = async () => {
   const app = document.querySelector('#app');
 
   if (app) {
-    const view = new match.route.view(app);
+    // new match.route.view
+    const view = new Layout(app, { children: match.route.view });
     console.log(view);
   }
 };

@@ -15,7 +15,7 @@ const navItems = [
   },
 ];
 
-export class Nav extends Component {
+export class Nav<T> extends Component<T> {
   template() {
     return `
         ${navItems
