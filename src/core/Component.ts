@@ -28,12 +28,16 @@ export class Component<Props = any, State = any> {
   }
   mounted() {}
   // 상태 값 변경시 리렌더링
-  setState(newState: object) {
-    this.$state = { ...this.$state, ...newState };
+  setState(newState: State) {
+    this.$state = newState;
     this.render();
   }
 
-  addEvent(eventType: keyof ElementEventMap, selector: string, callback: any) {
+  addEvent(
+    eventType: keyof GlobalEventHandlersEventMap,
+    selector: string,
+    callback: any
+  ) {
     const children: NodeListOf<Element> =
       this.$target.querySelectorAll(selector);
     const childrenArr = Array.from(children);
