@@ -9,7 +9,7 @@ interface State {
 
 export class Counter extends Component<Props, State> {
   setup(): void {
-    this.$state = {
+    this.state = {
       count: 0,
     };
   }
@@ -17,13 +17,13 @@ export class Counter extends Component<Props, State> {
   template(): string {
     return `
         <div>
-          <h1>Count_${this.$props.id} : ${this.$state.count}</h1>
+          <h1>Count_${this.props.id} : ${this.state.count}</h1>
           <button class="plus">+</button>
           <button class="minus">-</button>
         </div>`;
   }
   mounted(): void {
-    console.log(`counter_${this.$props.id} 렌더링`);
+    console.log(`counter_${this.props.id} 렌더링`);
   }
 
   setEvent(): void {
@@ -36,13 +36,13 @@ export class Counter extends Component<Props, State> {
   }
 
   plus() {
-    const { count } = this.$state;
+    const { count } = this.state;
     this.setState({
       count: count + 1,
     });
   }
   minus() {
-    const { count } = this.$state;
+    const { count } = this.state;
     this.setState({
       count: count - 1,
     });

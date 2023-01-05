@@ -8,15 +8,14 @@ interface State {
 
 export class Home extends Component<Props, State> {
   setup() {
-    this.$state = {
+    this.state = {
       count: 0,
     };
   }
   template(): string {
-    return `
-    <div>
+    return `<div>
       <div>
-          <h1>Home Counter : ${this.$state.count}</h1>
+          <h1>Home Counter : ${this.state.count}</h1>
           <button class="main_plus">+</button>
           <button class="main_minus">-</button>
       </div>
@@ -37,9 +36,9 @@ export class Home extends Component<Props, State> {
     const $counter_3 = this.$target.querySelector(
       '[data-component="counter_3"]'
     );
-    if ($counter_1) new Counter($counter_1, { id: 1 });
-    if ($counter_2) new Counter($counter_2, { id: 2 });
-    if ($counter_3) new Counter($counter_3, { id: 3 });
+    if ($counter_1) new Counter($counter_1 as HTMLElement, { id: 1 });
+    if ($counter_2) new Counter($counter_2 as HTMLElement, { id: 2 });
+    if ($counter_3) new Counter($counter_3 as HTMLElement, { id: 3 });
   }
 
   setEvent(): void {
@@ -52,13 +51,13 @@ export class Home extends Component<Props, State> {
   }
 
   plus() {
-    const { count } = this.$state;
+    const { count } = this.state;
     this.setState({
       count: count + 1,
     });
   }
   minus() {
-    const { count } = this.$state;
+    const { count } = this.state;
     this.setState({
       count: count - 1,
     });

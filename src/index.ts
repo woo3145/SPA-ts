@@ -40,8 +40,7 @@ const router = async () => {
   const app = document.querySelector('#app');
 
   if (app) {
-    // new match.route.view
-    const view = new Layout(app, { children: match.route.view });
+    const view = new Layout(app as HTMLElement, { children: match.route.view });
     console.log(view);
   }
 };

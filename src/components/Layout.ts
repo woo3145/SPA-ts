@@ -16,10 +16,10 @@ export class Layout<Props extends DefaultProps> extends Component<Props> {
     const $main = this.$target.querySelector('[data-component="main"]');
 
     if ($nav) {
-      new Nav($nav);
+      new Nav($nav as HTMLElement, {});
     }
-    if ($main && this.$props?.children) {
-      new this.$props.children($main);
+    if ($main && this.props?.children) {
+      new this.props.children($main);
     }
   }
 }
